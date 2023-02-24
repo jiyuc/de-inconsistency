@@ -334,7 +334,7 @@ if __name__ == '__main__':
     plt.show()
     model.eval()
     evaluate(model, g, node_features, dec_graph, edge_label)
-    torch.save(model.state_dict(), './gnn_model.pt')
+    torch.save(model.state_dict(), 'out/gnn_model.pt')
 
 
     g,_,_ = MakeGraph('./dev_positives.csv', './dev_negatives.csv').forward()
@@ -345,7 +345,7 @@ if __name__ == '__main__':
     pmid_gene_feats = g.nodes['pmid_gene'].data['h']
     node_features = {'go_id': go_feats, 'pmid_gene': pmid_gene_feats}
     model = Model(8, 16, 16, 8, g.etypes)
-    model.load_state_dict(torch.load('./gnn_model.pt'))
+    model.load_state_dict(torch.load('out/gnn_model.pt'))
     model.eval()
     evaluate(model, g, node_features, dec_graph, edge_label)
 
