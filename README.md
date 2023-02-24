@@ -1,4 +1,3 @@
-
 # De-inconsistency for GOA
 
 Automatic detection of inconsistency for literature-based Gene Onology Annotation [#paperwithcode]()
@@ -22,6 +21,9 @@ For example, giving an inconsistent GOA as below:
 🤔Decision: irrelevant GO mention
 
 Reason: the evidence does not indicate 𝑀𝑡𝑜𝑟 locates at ``spindle''.
+
+## Method
+![header](images/header.png)
 
 
 
