@@ -22,18 +22,52 @@ For example, giving an inconsistent GOA as below:
 
 Reason: the evidence does not indicate 𝑀𝑡𝑜𝑟 locates at ``spindle''.
 
+## Results
+![](images/results.png)
+
+## Conclusion
+Our study demonstrated the feasibility of integrating biological background knowledge for automatic detection of semantic inconsistency in GOA. Specifically, we found the performance can be significantly improved if key named entities (biological concept) are pre-extracted from the context, the GO specificity knowledge is incorporated, and the exiting GOA is referred.
+
 ## Method
 ![header](images/header.png)
 
+Figure 1. Overview of GOA inconsistency detection
+
+### Structure of GNN for incoporating GO specificity knowledge from the GO Direct Acyclic Graph (GO-DAG)
+![](images/go_gnn.png)
+Figure 2. Architecture of Graph Neural Network (GNN) with the objective of edge type
+classification for encoding GO specificity knowledge. _${h_u^n}$_ denotes the vector of vertex u
+in the nth layer of GNN; e denotes the edge type vector; ∥ denotes flat concatenation of
+vectors; ReLU denotes Rectified Linear Unit, the activation function; Norm denotes batch
+normalization; MLP denotes single-layered multi-layer perceptron.
+
+### Structure of GNN for incoporating existing GO annotation (GOA)
+![](images/goa_gnn.png)
+Figure 3. Architecture of Graph Neural Network (GNN) with the objective of edge type
+classification for encoding existing GOA patterns. Etn denotes the initial vectorization
+of node n representation. _${h_u^n}$_ denotes the hidden representation of node u in the nth
+layer of GNN; SAGE denotes the GraphSAGE sub-layer for aggregation of node features
+passed through same type of edges; Convolution aggregate output of SAGE sub-layers;
+ReLU denotes the Rectified Linear Unit, which is the activation function; Norm denotes
+batch normalization; ∥ denotes the flat concatenation of two node vectors; MLP denotes
+single-layered multi-layer perceptron.
 
 
+### Structure of GNN-BERT for Background Knowledge Integration from Gene Ontology Hierarchy
+![](images/model-arc.png)
+Figure 4. Architecture of joint model for GOA inconsistency detection, with the addition
+of entity layer in the input. Tok∗ denotes a linguistic token, E∗ and h∗ denote a token
+embedding, [CLS] and [SEP] are special tokens marking the boundary of an input pair.
+The highlighted entity embedding layer illustrates a case where tok1 , tok3, and tok4 are
+part of the pre-extracted biological concepts and thus were encoded in digit 1. This figure
+demonstrates the combination of h[cls], GODAG, and GOA KG.
 
 
 
 
 ## Authors
 
-- [Jiyu Chen](https://jiyuc.live)
+- [Jiyu Chen](https://jiyuc.github.io)
 - Benjamin Goudey
 - Nicholas Geard
 - Justin Zobel
@@ -43,9 +77,9 @@ Reason: the evidence does not indicate 𝑀𝑡𝑜𝑟 locates at ``spindle''.
 
 ## Citation
 
-Please consider citing one of the published work:
+Please consider citing one of the published works:
 
-- Chen, J., Goudey, B., Zobel, J., Geard, N. and Verspoor, K., 2023. Integrating Background Knowledge for detection of inconsistency for literature-based Gene Ontology Annotation, Manuscript submitted.
+- Chen, J., Goudey, B., Zobel, J., Geard, N. and Verspoor, K., 2023. Integrating Background Knowledge for detection of inconsistency for literature-based Gene Ontology Annotation, In Progress.
 
 - [Chen, J., Goudey, B., Zobel, J., Geard, N. and Verspoor, K., 2022. Exploring automatic inconsistency detection for literature-based gene ontology annotation. Bioinformatics, 38(Supplement_1), pp.i273-i281.](https://academic.oup.com/bioinformatics/article/38/Supplement_1/i273/6617491)
 
