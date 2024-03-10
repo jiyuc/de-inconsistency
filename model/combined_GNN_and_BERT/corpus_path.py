@@ -6,10 +6,10 @@ go_hier = './res/go_network.csv'
 go_text_attr = './res/go_info/go_text_attr.csv'
 
 
-tag = 'dumBERTrep'
+tag = 'GNNGOBERT'
 model_path = f'./output/{tag}'
 suffix = '_mclass'
 
 has_bg = True
-use_generif = False. # change to True if GeneRIF is used as evidence
+use_generif = False # change to True if GeneRIF is used as evidence
 num_cls = 5

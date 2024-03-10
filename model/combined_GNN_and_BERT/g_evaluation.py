@@ -5,7 +5,6 @@ from joint import JointModelForSequenceClassification
 from corpus_path import has_bg, use_generif, model_path, num_cls, suffix
 from graph_preprocessing import Integration, Encode, DatasetBert
 import sys
-import wandb
 from scipy.special import softmax
 from scipy.stats import entropy
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
@@ -96,14 +95,14 @@ if __name__ == '__main__':
     # load fine-tuned model
     model = JointModelForSequenceClassification.from_pretrained(f"{model_path}", num_labels=num_cls)
 
-    wandb.init(project="bioc-eval", entity="jiyuc", name=model_path+sr)
+    #wandb.init(project="bioc-eval", entity="jiyuc", name=model_path+sr)
     # set test args
     test_args = TrainingArguments(
         output_dir='./output/checkpoints',  # output directory
         per_device_eval_batch_size=500,  # batch size for evaluation
         run_name=model_path,
         do_predict=True,
-        report_to="wandb"
+        #report_to="wandb"
     )
 
     # create BERT fine-tuner

@@ -58,14 +58,7 @@ class JointModelForSequenceClassification(BertPreTrainedModel):
         )
         pooled_output = outputs[1]
         pooled_output = self.dropout(pooled_output)
-        """
-        # normalise
-        # pooled_output = F.normalize(pooled_output, p=2.0, dim=1, eps=1e-12, out=None)
-        go_hier_encodings = self.linear(go_hier_encodings)  # expand 16dim GO to 768 dim
-        """
         # flat concatenation as joint embedding |u||v|
-        node_embedding = torch.randn(node_embedding.shape)
-        node_embedding = self.linear(node_embedding)
         concatenated_output = torch.cat([pooled_output, node_embedding], dim=1)
         """
         # element_wise dot product |u*v|

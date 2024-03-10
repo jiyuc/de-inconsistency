@@ -4,7 +4,6 @@ from graph_preprocessing import Integration, Encode, DatasetBert
 from corpus_path import model_path, has_bg, use_generif, num_cls, suffix
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 import sys
-import wandb
 
 
 def type_mapper(path):
@@ -77,7 +76,7 @@ if __name__ == '__main__':
             'macro_recall': macro_recall
         }
 
-    wandb.init(project="bioc-1", entity="jiyuc", name=model_path)
+    #wandb.init(project="bioc-1", entity="jiyuc", name=model_path)
 
     # set training args
     training_args = TrainingArguments(
@@ -96,7 +95,7 @@ if __name__ == '__main__':
         logging_steps=100,
         evaluation_strategy="steps",  # evaluate at the end of steps
         load_best_model_at_end=True,
-        report_to="wandb"
+        #report_to="wandb"
     )
 
     # create BERT fine-tuner
@@ -105,7 +104,7 @@ if __name__ == '__main__':
         args=training_args,  # training arguments, defined above
         train_dataset=train_dataset,  # training dataset
         eval_dataset=dev_dataset,  # validation dataset
-        compute_metrics = compute_metrics,  # evaluation score
+        compute_metrics=compute_metrics,  # evaluation score
     )
 
     # begin fine-tuning

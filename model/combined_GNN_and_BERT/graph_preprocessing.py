@@ -71,12 +71,12 @@ class Integration:
                     temp.append(gohier2embedding[go_id])
                 except KeyError:
                     temp.append(torch.zeros(gohier2embedding['GO:0000001'].shape))
-            go_hier_embedding = torch.stack(temp)
-            #go_hier_embedding = torch.stack([gohier2embedding[r.split('\t')[-2]] for r in goa_records])
+            #go_hier_embedding = torch.stack(temp)
+            go_hier_embedding = torch.stack([gohier2embedding[r.split('\t')[-2]] for r in goa_records])
             pmid_gene_node_embedding = torch.stack([node2embedding['pmid_gene'][r.split('\t')[0]+'_'+r.split('\t')[1]] for r in goa_records])
 
             print(f'shape of encoded go node {go_node_embedding.shape}')
-            self.node_embedding = go_hier_embedding #torch.cat([go_node_embedding, pmid_gene_node_embedding, go_hier_embedding], dim=1)
+            self.node_embedding = torch.cat([go_node_embedding, pmid_gene_node_embedding, go_hier_embedding], dim=1)
 
             print('shape of node embedding')
             print(self.node_embedding.shape)
