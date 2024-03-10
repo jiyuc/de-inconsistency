@@ -21,6 +21,11 @@ For example, giving an inconsistent GOA as below:
 
 Reason: the evidence does not indicate 𝑀𝑡𝑜𝑟 locates at ``spindle''
 
+### Documentation ###
+- An instruction for reproducing the result or making inconsistency detection on customized dataset can be found in `modelling/`
+- The instruction for pre-training embedding for encoding existing GOA on customized dataset can be found in `exGOA pre-training/`
+- The instruction for pre-training embedding for encoding GO DAG on customized split can be found in `GO-DAG pre-training/`
+
 
 ## Results
 ![](images/results.png)
@@ -48,6 +53,7 @@ Figure 3. Architecture of Graph Neural Network (GNN) with the objective of edge 
 ![](images/model-arc.png)
 
 Figure 4. Architecture of joint model for GOA inconsistency detection, with the addition of entity layer in the input. Tok∗ denotes a linguistic token, E∗ and h∗ denote a token embedding, [CLS] and [SEP] are special tokens marking the boundary of an input pair. The highlighted entity embedding layer illustrates a case where tok1 , tok3, and tok4 are part of the pre-extracted biological concepts and thus were encoded in digit 1. This figure demonstrates the combination of h[cls], GODAG, and GOA KG.
+
 
 
 
